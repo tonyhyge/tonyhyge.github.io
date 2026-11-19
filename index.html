@@ -3,88 +3,201 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Minh Pham (Tony) — AI Engineer & Researcher</title>
-<meta name="description" content="Minh Pham (Tony) — AI Engineer & Researcher. Reinforcement learning for wireless communications, LLM systems.">
-<style>
-:root{--bg:#fbfbfa;--fg:#1c1c1c;--muted:#6b6b6b;--line:#e6e4df;--accent:#2563eb}
-@media (prefers-color-scheme:dark){:root{--bg:#121212;--fg:#ececec;--muted:#9a9a9a;--line:#2a2a2a;--accent:#7aa2ff}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:720px;margin:0 auto;padding:64px 20px 48px}
-h1{font-size:2rem;margin:0;line-height:1.2}
-h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:48px 0 16px;border-bottom:1px solid var(--line);padding-bottom:8px}
-h3{font-size:1rem;margin:0}
-p{margin:.4em 0}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-.sub{color:var(--muted);margin-top:4px}
-.links{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
-.item{margin-bottom:24px}
-.row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.when{color:var(--muted);font-size:.9rem;white-space:nowrap}
-.meta{color:var(--muted);font-size:.92rem}
-ul{margin:.4em 0;padding-left:1.2em}
-.tags{display:flex;flex-wrap:wrap;gap:8px}
-.tags span{border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.88rem}
-footer{color:var(--muted);font-size:.85rem;margin-top:64px}
-</style>
+<title>Pham Quang Minh (Tony) — AI Researcher &amp; Engineer</title>
+<meta name="description" content="Pham Quang Minh (Tony): AI researcher and engineer. World models under dynamics shift, 3D point-cloud segmentation, deep RL for wireless, and production document AI and LLM systems at AILOGY.">
+<meta name="theme-color" content="#0a0f1c">
+<meta property="og:title" content="Pham Quang Minh (Tony)">
+<meta property="og:description" content="I research when learning systems can be trusted, and build AI systems that run in production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<script type="module" src="assets/main.js"></script>
 </head>
 <body>
-<main>
-<header>
-  <h1>Minh Pham (Tony)</h1>
-  <p class="sub">AI Engineer &amp; Researcher · Ho Chi Minh City, Vietnam</p>
-  <nav class="links">
-    <a href="https://github.com/tonyhyge">GitHub</a>
-    <a href="https://linkedin.com/in/tonyhyge">LinkedIn</a>
-    <!-- TODO: Google Scholar / email / CV -->
+<a class="skip" href="#research">Skip to content</a>
+
+<header class="top">
+  <a class="mark" href="#">Minh Pham</a>
+  <nav aria-label="Sections">
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<section>
-  <h2>About</h2>
-  <p>AI engineer working on LLM systems in industry and researcher in deep reinforcement learning for wireless communications. Final-year student at Van Lang University.</p>
+<section class="hero" aria-label="Introduction">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <canvas id="overlay" aria-hidden="true"></canvas>
+  <div class="hero-text">
+    <h1 id="name">Minh Pham</h1>
+    <div class="hero-sub">
+      <p class="aka">Tony</p>
+      <p class="lede">I research when learning systems can be trusted, and build AI systems that run in production.</p>
+      <p class="role">AI Engineer &amp; Researcher at <a href="https://ailogy.vn">AILOGY</a>. AI Research Member at the FCCS Lab, Van Lang University.</p>
+      <p class="links">
+        <a class="btn" href="#cv">Download CV</a>
+        <a href="https://github.com/tonyhyge">GitHub</a>
+        <a href="https://linkedin.com/in/minhtony">LinkedIn</a>
+        <a href="mailto:minhphamtony@gmail.com">Email</a>
+      </p>
+    </div>
+  </div>
+  <aside class="readout" aria-label="Live signal readout">
+    <p class="readout-help">Point anywhere on the field. When my name blocks the direct path from the base station, the reconfigurable surface at the top re-phases its tiles to bend the signal around it and focus on you.</p>
+    <dl>
+      <div><dt>Direct path</dt><dd id="ro-los">Clear</dd></div>
+      <div><dt>Route</dt><dd id="ro-route">Direct from the base station</dd></div>
+      <div><dt>Hardware</dt><dd>32 antennas, 32 tiles</dd></div>
+    </dl>
+  </aside>
 </section>
 
-<section>
-  <h2>Experience</h2>
-  <div class="item">
-    <div class="row"><h3>AI Engineer Researcher · <a href="https://ailogy.com">AILOGY</a></h3><span class="when">2024 – Present</span></div>
-    <p class="meta">Full-time</p>
-  </div>
-  <div class="item">
-    <div class="row"><h3>Researcher · FCCS Lab, Van Lang University</h3><span class="when">– Present</span></div>
-    <p class="meta">Future Communications and Computer Science Lab (formerly CSaC Lab)</p>
-    <ul>
-      <li>Deep reinforcement learning and world models for wireless networks</li>
-      <li>Graduation thesis: multi-RIS cell-free mmWave systems for short-packet URLLC</li>
-    </ul>
-  </div>
-</section>
+<main>
+  <section id="research" class="block">
+    <h2>Research</h2>
+    <div class="body">
+      <p class="intro">My research interests are world models under dynamics shift, deep reinforcement learning for wireless communications, and 3D point-cloud learning. My bachelor’s thesis, with Ms. Nguyen Thai Anh, asks when a world model’s uncertainty points at the errors that actually change decisions.</p>
+      <p class="intro muted">I care about whether a method does what it claims, so most of my work is diagnostic: seed-averaged experiments, paired statistics and preregistered hypotheses. At AILOGY I build document AI and LLM systems that run in production.</p>
+    </div>
+  </section>
 
-<section>
-  <h2>Publications</h2>
-  <div class="item">
-    <h3><!-- TODO: paper title --></h3>
-    <p class="meta"><b>M. Pham</b>, et al. · IEEE RIVF 2025 · First author</p>
-  </div>
-</section>
+  <section id="publications" class="block">
+    <h2>Publications</h2>
+    <div class="body">
+      <ol class="pubs">
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <h3>Certified Covertness Without Warden CSI in STAR-RIS-Assisted RSMA Massive MIMO: Closed-Form and DRL-Based Designs</h3>
+            <p class="authors"><b>P. Q. Minh</b>, N. T. Anh, Huy T. Nguyen, Tri-Hai Nguyen, Thai-Hoc Vu, Tran Thien Thanh, V. N. Q. Bao, N. H. Tu</p>
+            <p class="venue">Under review at IEEE Transactions on Wireless Communications (TWC), first author</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <h3>World Models, Measured: A Systematic Map and Coded Evidence Synthesis With a Loss-Level Template, Evidence-Graded Capability Levels, and a Result Register</h3>
+            <p class="authors">N. T. Anh, T. V. Vu, N. P. Nguyen, <b>P. Q. Minh</b>, T. T. Thanh, V. N. Q. Bao, N. H. Tu</p>
+            <p class="venue">Under review at IEEE Access</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">In prep.</span>
+          <div>
+            <h3>When Does Group Consistency Help? A Diagnostic Audit of Partition-Induced Regularization for TLS Leaf–Wood Segmentation</h3>
+            <p class="authors"><b>P. Q. Minh</b>, T. V. Vu, A. T. Nguyen, T. T. Thanh, V. N. Q. Bao, N. H. Tu</p>
+            <p class="venue">Manuscript in preparation, first author</p>
+            <details>
+              <summary>Summary</summary>
+              <p>An audit of group-consistency regularization on Point Transformer v3 across 43M+ TLS points from 30 tropical trees. Gains are tested at tree level over a 5-seed panel with paired bootstrap confidence intervals, Wilcoxon signed-rank tests and TOST equivalence margins. Zero-shot transfer to four external datasets (FOR-instance, ForestSemantic, NIBIO MLS, Wytham Woods) isolates label-ontology effects, and a downstream QSM analysis shows how the spatial pattern of errors changes woody-volume estimates independently of point-wise mIoU.</p>
+            </details>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <h3>Fruit Ripeness Detection: A Comparative Analysis of State-of-the-Art YOLO Models</h3>
+            <p class="authors"><b>P. Q. Minh</b>, L. N. Tan, N. H. Tu, A. T. Nguyen</p>
+            <p class="venue">IEEE RIVF 2025, Ho Chi Minh City, December 2025, first author</p>
+            <details>
+              <summary>Summary</summary>
+              <p>A benchmark of YOLOv5 and YOLOv8 variants with ResNet backbones on a curated multi-condition fruit dataset with custom augmentation. The best model reaches 0.757 mAP on the target classes, a 5.6% improvement, at under 30 ms per image for real-time edge use.</p>
+            </details>
+            <p class="pub-links"><a href="https://www.researchgate.net/publication/400433637_Fruit_Ripeness_Detection_A_Comparative_Analysis_of_State-of-the-Art_YOLO_Models">Paper on ResearchGate</a></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-<section>
-  <h2>Skills</h2>
-  <div class="tags">
-    <span>Python</span><span>PyTorch</span><span>Deep RL</span><span>Gymnasium</span><span>NumPy / SciPy</span><span>LLM serving (SGLang)</span><span>RAG</span><span>Docker</span><span>Linux</span>
-  </div>
-</section>
+  <section id="projects" class="block">
+    <h2>Projects</h2>
+    <div class="body projects">
+      <article class="project wide">
+        <div class="shot">[OFIVI product screenshot, 16:9]</div>
+        <h3>OFIVI: an AI-native digital office</h3>
+        <p>OFIVI brings scattered work tools (file storage, documents, spreadsheets, slides, team chat, calendar and tasks) into one workspace. It is installed on the organization’s own infrastructure, so data never leaves it, and every AI answer cites its sources so people can check them.</p>
+        <ul>
+          <li>An assistant that answers questions over the organization’s own documents, summarizes, compares two versions of a text and flags risky content. It can act in the other tools, but it proposes first and writes only after the user approves.</li>
+          <li>Central document storage with hybrid keyword and semantic search that returns the exact passage, with its source.</li>
+          <li>AI writing, spreadsheet analysis in plain language, and documents turned into slide decks, with DOCX and PPTX export.</li>
+          <li>AI notebooks that pull many sources together and explore them through mind maps, summary reports and deep research.</li>
+          <li>Team chat and calls on web and mobile, plus a Today view, calendar, tasks and notes.</li>
+          <li>Meeting minutes, in progress: Vietnamese speech recognition with speaker separation that drafts conclusions, tasks and deadlines.</li>
+        </ul>
+        <p class="stack">[Your role on OFIVI and the stack you worked with.] Company product.</p>
+        <p class="pub-links"><a href="https://ofivi.com">ofivi.com</a></p>
+      </article>
+      <article class="project wide">
+        <div class="shot">[Detection results or pipeline figure, 16:9]</div>
+        <h3>Fruit ripeness detection with YOLO</h3>
+        <p>Led a team of four from dataset to paper: curated and annotated multi-condition fruit images, built the augmentation pipeline and benchmarked YOLO architectures for edge inference. Reached 0.757 mAP (+5.6%) under 30 ms, published at IEEE RIVF 2025.</p>
+        <p class="stack">PyTorch, YOLOv5, YOLOv8, OpenCV</p>
+        <p class="pub-links"><a href="https://www.researchgate.net/publication/400433637_Fruit_Ripeness_Detection_A_Comparative_Analysis_of_State-of-the-Art_YOLO_Models">Paper</a></p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h2>Education</h2>
-  <div class="item">
-    <div class="row"><h3>Van Lang University</h3><span class="when">– 2026</span></div>
-    <p class="meta">B.Sc. <!-- TODO: major --></p>
-  </div>
-</section>
+  <section id="experience" class="block">
+    <h2>Experience</h2>
+    <div class="body">
+      <ol class="timeline">
+        <li>
+          <span class="year">Feb 2026 – now</span>
+          <div>
+            <h3>AI Research Member, FCCS Lab, Van Lang University</h3>
+            <p>Future Communications and Computer Science Lab, formerly the CSaC Lab. Research on world models, deep RL for wireless communications and 3D point-cloud learning.</p>
+          </div>
+        </li>
+        <li>
+          <span class="year">Jun 2025 – now</span>
+          <div>
+            <h3>AI Engineer &amp; Researcher, <a href="https://ailogy.vn">AILOGY</a></h3>
+            <p>Ho Chi Minh City. Document AI, LLM systems and the GPU infrastructure that runs them. Promoted from AI Research Intern in October 2025.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-<footer>© 2026 Minh Pham</footer>
+  <section id="education" class="block">
+    <h2>Education and skills</h2>
+    <div class="body split">
+      <div>
+        <h3>Van Lang University</h3>
+        <p>B.S. in Information Technology, Sep 2022 – 2027 (expected)</p>
+        <p class="muted">Thesis: When Does Prediction Uncertainty Align with Decision-Relevant Model Error under Dynamics Shift? Advisor: Ms. Nguyen Thai Anh.</p>
+        <p class="muted">Academic merit scholarship, 2022–2023.</p>
+      </div>
+      <dl class="skills">
+        <dt>Learning</dt><dd>PyTorch, Hugging Face, deep RL, world models, Point Transformer v3, YOLO, OpenCV</dd>
+        <dt>LLM systems</dt><dd>Agentic RAG, SFT, DPO, QLoRA, vLLM, SGLang, QdrantDB</dd>
+        <dt>Infrastructure</dt><dd>Linux, Docker, AWS, bare-metal GPU servers, Git</dd>
+        <dt>Methods</dt><dd>Bootstrap CIs, Wilcoxon tests, TOST equivalence, human-in-the-loop annotation and QA</dd>
+        <dt>Code</dt><dd>Python, SQL, Bash, C/C++</dd>
+        <dt>Languages</dt><dd>Vietnamese (native), English (C1)</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Working on trustworthy ML or applied AI? Write to me.</h2>
+    <p class="email-row">
+      <a class="email" href="mailto:minhphamtony@gmail.com">minhphamtony@gmail.com</a>
+      <button type="button" class="btn ghost" data-copy="minhphamtony@gmail.com">Copy email</button>
+    </p>
+    <p class="email-row">
+      <a class="email" href="mailto:minh.2274802010538@vanlanguni.vn">minh.2274802010538@vanlanguni.vn</a>
+      <button type="button" class="btn ghost" data-copy="minh.2274802010538@vanlanguni.vn">Copy email</button>
+    </p>
+  </section>
 </main>
+
+<footer class="foot">
+  <p>© 2026 Pham Quang Minh. Updated November 2026. The wave field runs live in your browser.</p>
+</footer>
 </body>
 </html>
