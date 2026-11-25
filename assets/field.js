@@ -169,12 +169,15 @@ function resize() {
     rx[i] = rc.x + o * gapR; ry[i] = rc.y;
   }
   buildMask(hr);
-  if (!target.user) idle(performance.now());
+  if (!target.user) idle(performance.now(), true);
 }
 
-function idle(t) {
-  target.x = wide ? W * (0.11 + 0.04 * Math.sin(t * 0.00023)) : 26 + 6 * Math.sin(t * 0.00023);
-  target.y = nameMid + (wide ? H * 0.05 : 14) * Math.sin(t * 0.00031);
+function idle(t, snap = false) {
+  const ix = wide ? W * (0.11 + 0.04 * Math.sin(t * 0.00023)) : 26 + 6 * Math.sin(t * 0.00023);
+  const iy = nameMid + (wide ? H * 0.05 : 14) * Math.sin(t * 0.00031);
+  if (snap || still) { target.x = ix; target.y = iy; return; }
+  target.x += (ix - target.x) * 0.08;
+  target.y += (iy - target.y) * 0.08;
 }
 
 const norm = (px, py, xs, ys) => { let f = 0; for (let i = 0; i < N; i++) f += 1 / Math.sqrt(Math.hypot(px - xs[i], py - ys[i]) * s + 8 * s); return f; };
@@ -283,8 +286,10 @@ function aim(e) {
 function release(e) {
   if (!holding) return;
   holding = false;
+  target.user = false;
   ov.classList.remove('dragging');
   try { ov.releasePointerCapture(e.pointerId); } catch {}
+  if (still) { idle(0, true); draw(0); }
 }
 ov.addEventListener('pointerdown', (e) => {
   if (e.pointerType === 'mouse' && e.button !== 0) return;
