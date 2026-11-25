@@ -149,12 +149,20 @@ function resize() {
   const d = Math.min(devicePixelRatio || 1, 2);
   ov.width = W * d; ov.height = H * d; octx.setTransform(d, 0, 0, d, 0, 0);
 
+  const topH = document.querySelector('.top')?.getBoundingClientRect().height || 0;
   const nr = nameEl.getBoundingClientRect();
   nameMid = nr.top - hr.top + nr.height / 2;
   const gapB = Math.min(LAMBDA / 2, (H * (wide ? 0.4 : 0.2)) / (N - 1));
   const gapR = Math.min(LAMBDA / 2, (W * (wide ? 0.3 : 0.36)) / (N - 1));
-  if (wide) { bc.x = W - 56; bc.y = H * 0.33; rc.x = W * 0.2; rc.y = Math.max(96, H * 0.12); }
-  else { bc.x = W - 16; bc.y = nameMid; rc.x = W * 0.2; rc.y = 128; } // phones: the name shadows the left edge
+  if (wide) {
+    bc.x = W - 56; bc.y = H * 0.33; rc.x = W * 0.2; rc.y = Math.max(topH + 34, H * 0.12);
+  } else {
+    bc.x = W - 16;
+    rc.x = W * 0.2;
+    rc.y = Math.max(128, topH + 34);
+    const minBcY = topH + 28 + ((N - 1) / 2) * gapB;
+    bc.y = Math.max(nameMid, minBcY); // phones: keep Base station label clear of fixed header
+  }
   for (let i = 0; i < N; i++) {
     const o = i - (N - 1) / 2;
     bx[i] = bc.x; by[i] = bc.y + o * gapB;
@@ -264,18 +272,33 @@ function loop(t) {
 }
 function start() { if (!running && !still) { running = true; requestAnimationFrame(loop); } }
 
+let holding = false;
 function aim(e) {
   const r = ov.getBoundingClientRect();
-  target.x = e.clientX - r.left; target.y = e.clientY - r.top; target.user = true;
+  target.x = Math.max(0, Math.min(W, e.clientX - r.left));
+  target.y = Math.max(0, Math.min(H, e.clientY - r.top));
+  target.user = true;
   if (still) draw(0);
 }
-ov.addEventListener('pointermove', aim);
-ov.addEventListener('pointerdown', aim);
-ov.addEventListener('pointerleave', (e) => {
-  if (e.pointerType !== 'mouse') return;
-  target.user = false;
-  if (still) { idle(0); draw(0); }
+function release(e) {
+  if (!holding) return;
+  holding = false;
+  ov.classList.remove('dragging');
+  try { ov.releasePointerCapture(e.pointerId); } catch {}
+}
+ov.addEventListener('pointerdown', (e) => {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  holding = true;
+  ov.classList.add('dragging');
+  try { ov.setPointerCapture(e.pointerId); } catch {}
+  aim(e);
 });
+ov.addEventListener('pointermove', (e) => {
+  if (!holding) return;
+  aim(e);
+});
+ov.addEventListener('pointerup', release);
+ov.addEventListener('pointercancel', release);
 
 // the obstacle must match the real glyphs, so wait for the display font
 document.fonts.load(`700 100px ${DISPLAY}`).catch(() => {}).finally(() => {
